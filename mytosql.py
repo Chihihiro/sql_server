@@ -123,7 +123,7 @@ def up_to_sql(DD, usr, tb_name, co, dataframe, zhu):
             tb_name=tb_name,
             cols=coo)
 
-        v = df_tmp.values.tolist()[0]
+        # v = df_tmp.values.tolist()[0]
         # sql2 = " where {a} = {b}".format(a=col[0], b="'" + v[0] + "'")
         # if len(col) > 1:
         #     ss = []
@@ -154,12 +154,13 @@ def up_to_sql(DD, usr, tb_name, co, dataframe, zhu):
         else:
             pass
 
-        print(df_tmp)
+        print(df_tmp.values)
         sql5 = " {a} = {b}".format(a=zzz[0], b="'" + df[zzz[0]][i] + "'")
         if len(zzz) > 1:
             xx = []
-            for i in range(1, len(zzz)):
-                str3 = " and {a} = {b} ".format(a=zzz[i], b="'" + df_tmp[zzz[i]][0] + "'")
+            for jj in range(1, len(zzz)):
+                str3 = " , {a} = {b} ".format(a=zzz[jj], b="'" + df[zzz[jj]][i] + "'")
+                # strf = " and {a} = {b} ".format(a=zhu[tt], b="'" + df[zhu[tt]][i] + "'")
                 xx.append(str3)
             xxx = ''.join(xx)
             sql5 = sql5 + xxx
@@ -187,11 +188,12 @@ def up_to_sql(DD, usr, tb_name, co, dataframe, zhu):
             conn.execute(sql_main)
             co.commit()
 
-        except pymssql.IntegrityError as e:
+        except BaseException as e:
             print(e)
             co.commit()
             print("注意有错误~~~~~~~~~~~有错误~~~~~~~~~~~")
-
+        else:
+            pass
 
 import pandas as pd
 

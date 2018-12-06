@@ -81,8 +81,6 @@ def all_data_to_table(table):
     in_to_sql('dataTrace', 'trace', table,
               engine_DMP, df_all, chunksize=1000)
 
-    a = 'dsa' \
-        'das'
 
 
 def logtime_data(table):
@@ -132,3 +130,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
